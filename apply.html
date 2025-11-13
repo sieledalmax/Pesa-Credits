@@ -29,7 +29,7 @@
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --danger-color: #ef4444;
-            --border-radius: 16px;
+            --border-radius: 12px;
             --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
         }
@@ -218,70 +218,65 @@
             opacity: 1;
         }
 
-        /* ===== IMPROVED AMOUNTS GRID ===== */
-        .amounts {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.8rem;
-            margin: 1.5rem 0;
+        /* ===== LOAN OPTIONS GRID - MATCHING OKOAHUB STYLE ===== */
+        .loan-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .amount-button {
-            padding: 1.25rem 0.5rem;
-            border: 2px solid #e2e8f0;
+        .card-title {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .loan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .loan-option {
+            background: rgba(248, 250, 252, 0.9);
+            border: 1px solid rgba(0,0,0,0.1);
             border-radius: var(--border-radius);
+            padding: 1rem 0.75rem;
             text-align: center;
             cursor: pointer;
-            transition: var(--transition);
-            background-color: rgba(255, 255, 255, 0.9);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(2px);
-            min-height: 80px;
+            transition: all 0.2s;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 80px;
         }
 
-        .amount-button:hover {
-            border-color: var(--primary-color);
+        .loan-option:hover {
             transform: translateY(-2px);
-            box-shadow: var(--box-shadow);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .amount-button.selected {
+        .loan-option.selected {
             border-color: var(--primary-color);
-            background-color: rgba(240, 245, 255, 0.9);
+            background-color: rgba(37, 99, 235, 0.1);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
         }
 
-        .amount-button.selected:after {
-            content: "✓";
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-        }
-
-        .amount-button strong {
+        .loan-amount {
             font-size: 1.1rem;
+            font-weight: 700;
             color: var(--primary-color);
-            display: block;
             margin-bottom: 0.25rem;
-            font-weight: 600;
             line-height: 1.2;
         }
 
-        .amount-button .processing-fee {
-            font-size: 0.8rem;
+        .processing-fee {
+            font-size: 0.75rem;
             color: var(--light-text);
             line-height: 1.2;
         }
@@ -315,41 +310,31 @@
             text-align: center;
         }
 
-        .proceed-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 2rem;
-            background-color: var(--primary-color);
+        .btn-apply {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
             color: white;
             border: none;
-            border-radius: 50px;
+            border-radius: var(--border-radius);
             font-size: 1rem;
             font-weight: 600;
+            margin: 1rem 0;
             cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 100%;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        .proceed-button:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        }
-
-        .proceed-button:active {
-            transform: translateY(0);
-        }
-
-        .proceed-button:disabled {
-            background-color: #cbd5e0;
+        .btn-apply:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
+        }
+
+        .btn-apply:active:not(:disabled) {
+            transform: scale(0.98);
         }
 
         .btn-spinner {
@@ -367,7 +352,7 @@
             color: var(--danger-color);
             font-size: 0.85rem;
             text-align: center;
-            margin-top: 8px;
+            margin-top: 0.5rem;
             display: none;
             line-height: 1.4;
         }
@@ -603,18 +588,18 @@
                 font-size: 1.5rem;
             }
             
-            .amounts {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 1.2rem;
+            .loan-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 1rem;
             }
             
-            .amount-button {
-                padding: 1.5rem 0.5rem;
+            .loan-option {
+                padding: 1.25rem 1rem;
                 min-height: 90px;
             }
             
-            .amount-button strong {
-                font-size: 1.3rem;
+            .loan-amount {
+                font-size: 1.2rem;
             }
             
             .trust-badges {
@@ -627,11 +612,6 @@
             .trust-badge {
                 font-size: 0.9rem;
                 padding: 0.8rem 1.2rem;
-            }
-            
-            .proceed-button {
-                width: auto;
-                padding: 1rem 2.5rem;
             }
         }
 
@@ -656,9 +636,9 @@
                 font-size: 1.2rem;
             }
             
-            .amounts {
-                grid-template-columns: 1fr;
-                gap: 0.7rem;
+            .loan-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
             }
             
             .payment-actions {
@@ -684,12 +664,16 @@
                 font-size: 0.9rem;
             }
             
-            .amount-button {
-                padding: 1rem 0.5rem;
+            .loan-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .loan-option {
+                padding: 1rem 0.75rem;
                 min-height: 75px;
             }
             
-            .amount-button strong {
+            .loan-amount {
                 font-size: 1rem;
             }
         }
@@ -740,55 +724,58 @@
             <div id="ticker-container"></div>
         </div>
 
-        <!-- IMPROVED AMOUNTS GRID -->
-        <div class="amounts">
-            <div class="amount-button" onclick="selectLoanOption(this, 5500, 50)">
-                <strong>Ksh 5,500</strong>
-                <span class="processing-fee">Fee: Ksh 50</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 7800, 80)">
-                <strong>Ksh 7,800</strong>
-                <span class="processing-fee">Fee: Ksh 80</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 9800, 110)">
-                <strong>Ksh 9,800</strong>
-                <span class="processing-fee">Fee: Ksh 110</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 11200, 150)">
-                <strong>Ksh 11,200</strong>
-                <span class="processing-fee">Fee: Ksh 150</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 16800, 180)">
-                <strong>Ksh 16,800</strong>
-                <span class="processing-fee">Fee: Ksh 180</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 21200, 220)">
-                <strong>Ksh 21,200</strong>
-                <span class="processing-fee">Fee: Ksh 220</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 25600, 350)">
-                <strong>Ksh 25,600</strong>
-                <span class="processing-fee">Fee: Ksh 350</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 30000, 420)">
-                <strong>Ksh 30,000</strong>
-                <span class="processing-fee">Fee: Ksh 420</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 35400, 540)">
-                <strong>Ksh 35,400</strong>
-                <span class="processing-fee">Fee: Ksh 540</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 39800, 680)">
-                <strong>Ksh 39,800</strong>
-                <span class="processing-fee">Fee: Ksh 680</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 44200, 960)">
-                <strong>Ksh 44,200</strong>
-                <span class="processing-fee">Fee: Ksh 960</span>
-            </div>
-            <div class="amount-button" onclick="selectLoanOption(this, 48600, 1550)">
-                <strong>Ksh 48,600</strong>
-                <span class="processing-fee">Fee: Ksh 1550</span>
+        <!-- LOAN OPTIONS GRID - MATCHING OKOAHUB STYLE -->
+        <div class="loan-card">
+            <h3 class="card-title">Select Your Loan Amount</h3>
+            <div class="loan-grid">
+                <div class="loan-option" onclick="selectLoanOption(this, 5500, 50)">
+                    <div class="loan-amount">Ksh 5,500</div>
+                    <div class="processing-fee">Fee: Ksh 50</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 7800, 80)">
+                    <div class="loan-amount">Ksh 7,800</div>
+                    <div class="processing-fee">Fee: Ksh 80</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 9800, 110)">
+                    <div class="loan-amount">Ksh 9,800</div>
+                    <div class="processing-fee">Fee: Ksh 110</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 11200, 150)">
+                    <div class="loan-amount">Ksh 11,200</div>
+                    <div class="processing-fee">Fee: Ksh 150</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 16800, 180)">
+                    <div class="loan-amount">Ksh 16,800</div>
+                    <div class="processing-fee">Fee: Ksh 180</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 21200, 220)">
+                    <div class="loan-amount">Ksh 21,200</div>
+                    <div class="processing-fee">Fee: Ksh 220</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 25600, 350)">
+                    <div class="loan-amount">Ksh 25,600</div>
+                    <div class="processing-fee">Fee: Ksh 350</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 30000, 420)">
+                    <div class="loan-amount">Ksh 30,000</div>
+                    <div class="processing-fee">Fee: Ksh 420</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 35400, 540)">
+                    <div class="loan-amount">Ksh 35,400</div>
+                    <div class="processing-fee">Fee: Ksh 540</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 39800, 680)">
+                    <div class="loan-amount">Ksh 39,800</div>
+                    <div class="processing-fee">Fee: Ksh 680</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 44200, 960)">
+                    <div class="loan-amount">Ksh 44,200</div>
+                    <div class="processing-fee">Fee: Ksh 960</div>
+                </div>
+                <div class="loan-option" onclick="selectLoanOption(this, 48600, 1550)">
+                    <div class="loan-amount">Ksh 48,600</div>
+                    <div class="processing-fee">Fee: Ksh 1550</div>
+                </div>
             </div>
         </div>
 
@@ -798,8 +785,8 @@
         </div>
 
         <div class="proceed-section">
-            <button id="apply-btn" class="proceed-button" disabled>
-                <span class="btn-text">Get Loan Now</span>
+            <button id="apply-btn" class="btn-apply" disabled>
+                Get Loan Now <i class="fas fa-arrow-right"></i>
                 <span class="btn-spinner"><i class="fas fa-spinner"></i></span>
             </button>
             <div id="error-message" class="error-message">Please select a loan amount to continue</div>
@@ -1016,7 +1003,7 @@
     window.addEventListener('load', initTicker);
 
     function selectLoanOption(element, amount, fee) {
-        document.querySelectorAll('.amount-button').forEach(opt => {
+        document.querySelectorAll('.loan-option').forEach(opt => {
             opt.classList.remove('selected');
         });
         element.classList.add('selected');
