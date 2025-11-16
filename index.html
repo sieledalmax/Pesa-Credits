@@ -250,55 +250,6 @@
             font-weight: 500;
         }
 
-        /* ===== Checkbox Styles ===== */
-        .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background-color: rgba(241, 245, 249, 0.7);
-            border-radius: var(--radius);
-        }
-
-        .checkbox-container input[type="checkbox"] {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #cbd5e1;
-            border-radius: 4px;
-            position: relative;
-            cursor: pointer;
-            flex-shrink: 0;
-            margin-top: 0.1rem;
-        }
-
-        .checkbox-container input[type="checkbox"]:checked {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .checkbox-container input[type="checkbox"]:checked::after {
-            content: "✓";
-            position: absolute;
-            color: white;
-            font-size: 0.9rem;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .checkbox-container label {
-            font-size: 0.9rem;
-            color: var(--text);
-        }
-
-        .checkbox-container a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
         /* ===== Button Styles ===== */
         .btn-primary {
             display: flex;
@@ -316,7 +267,7 @@
             cursor: pointer;
             transition: var(--transition);
             box-shadow: var(--shadow);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .btn-primary:hover {
@@ -502,6 +453,15 @@
             </div>
         </div>
 
+        <!-- CTA Button -->
+        <button class="btn-primary" id="startBtn">
+            <span>Apply Now</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </button>
+
         <!-- Feature Cards -->
         <div class="card">
             <div class="card-title">
@@ -543,21 +503,6 @@
             </div>
             <p>Transparent pricing with no surprises. Know exactly what you'll pay.</p>
         </div>
-
-        <!-- Terms Agreement -->
-        <div class="checkbox-container">
-            <input type="checkbox" id="agreeCheckbox" />
-            <label for="agreeCheckbox">I agree to the <a href="/terms">Terms & Conditions</a> and confirm that I've read the Privacy Policy.</label>
-        </div>
-
-        <!-- CTA Button -->
-        <button class="btn-primary" id="startBtn">
-            <span>Get Instant Approval Now</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-        </button>
 
         <!-- Trust Badges -->
         <div class="trust-badges">
@@ -604,13 +549,7 @@
 
     <script>
         document.getElementById('startBtn').addEventListener('click', () => {
-            const checkbox = document.getElementById('agreeCheckbox');
             const loader = document.getElementById('loader');
-
-            if (!checkbox.checked) {
-                showToast('Please agree to the terms before continuing.');
-                return;
-            }
 
             loader.style.display = 'block';
 
@@ -619,24 +558,6 @@
                 loader.style.display = 'none';
             }, 2000);
         });
-
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = "toast";
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.add("show");
-            }, 100);
-            
-            setTimeout(() => {
-                toast.classList.remove("show");
-                setTimeout(() => {
-                    document.body.removeChild(toast);
-                }, 500);
-            }, 3000);
-        }
     </script>
 </body>
 </html>
